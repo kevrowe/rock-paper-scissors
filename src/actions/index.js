@@ -5,13 +5,13 @@ export const setUsername = username => ({
   username
 })
 
-export const cpuPick = pick => ({
-  type: actionTypes.cpuPick,
+export const setCpuPick = pick => ({
+  type: actionTypes.setCpuPick,
   pick
 })
 
-export const userPick = pick => ({
-  type: actionTypes.userPick,
+export const setUserPick = pick => ({
+  type: actionTypes.setUserPick,
   pick
 })
 
