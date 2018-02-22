@@ -5,13 +5,18 @@ export const setUsername = username => ({
   username
 })
 
+export const cpuPick = pick => ({
+  type: actionTypes.cpuPick,
+  pick
+})
+
 export const userPick = pick => ({
   type: actionTypes.userPick,
   pick
 })
 
-export const showPicks = () => ({
-  type: actionTypes.showPicks
+export const play = () => ({
+  type: actionTypes.play
 })
 
 export const newRound = () => ({
