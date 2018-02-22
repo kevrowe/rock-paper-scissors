@@ -1,0 +1,22 @@
+export const getValueFromState = (state, key) => {
+  return state.getIn(parseKey(state, key))
+}
+
+export const setValueInState = (state, key, value) => {
+  return state.setIn(parseKey(state, key), value)
+}
+
+export const parseKey = (state, key) => {
+  const keySlugs = key.split('.')
+
+  if (state.has(keySlugs[0])) {
+    return keySlugs
+  }
+
+  return keySlugs.slice(1)
+}
+
+export const stateKeys = {
+  USER_NAME: 'game.user.name',
+  USER_SCORE: 'game.user.score'
+}
