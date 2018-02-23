@@ -12,6 +12,23 @@ const initialState = fromJS({
   }
 })
 
+const newRound = (state, action ) => {
+  let newState = setValueInState(state, stateKeys.PLAY, false)
+
+  const userHistory = getValueFromState(newState, stateKeys.USER_HISTORY)
+  const cpuHistory = getValueFromState(newState, stateKeys.CPU_HISTORY)
+  const currentsetUserPick = getValueFromState(newState, stateKeys.USER_PICK)
+  const currentsetCpuPick = getValueFromState(newState, stateKeys.CPU_PICK)
+
+  newState = setValueInState(newState, stateKeys.USER_HISTORY, userHistory.push(currentsetUserPick))
+  newState = setValueInState(newState, stateKeys.CPU_HISTORY, cpuHistory.push(currentsetCpuPick))
+
+  newState = setValueInState(newState, stateKeys.USER_PICK, null)
+  newState = setValueInState(newState, stateKeys.CPU_PICK, null)
+
+  return newState
+}
+
 export default (state = initialState, action) => {
   switch (action.type) {
     case actionTypes.setUsername:
@@ -23,20 +40,7 @@ export default (state = initialState, action) => {
     case actionTypes.play:
       return setValueInState(state, stateKeys.PLAY, true)
     case actionTypes.newRound:
-      let newState = setValueInState(state, stateKeys.PLAY, false)
-
-      const userHistory = getValueFromState(newState, stateKeys.USER_HISTORY)
-      const cpuHistory = getValueFromState(newState, stateKeys.CPU_HISTORY)
-      const currentsetUserPick = getValueFromState(newState, stateKeys.USER_PICK)
-      const currentsetCpuPick = getValueFromState(newState, stateKeys.CPU_PICK)
-
-      newState = setValueInState(newState, stateKeys.USER_HISTORY, userHistory.push(currentsetUserPick))
-      newState = setValueInState(newState, stateKeys.CPU_HISTORY, cpuHistory.push(currentsetCpuPick))
-
-      newState = setValueInState(newState, stateKeys.USER_PICK, null)
-      newState = setValueInState(newState, stateKeys.CPU_PICK, null)
-
-      return newState
+      return newRound(state, action)
     default:
       return state
   }
