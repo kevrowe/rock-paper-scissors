@@ -1,24 +1,26 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from 'react'
+import { connect } from 'react-redux'
+import './App.css'
 
-import Name from './components/Name'
+import NamePlate from './components/NamePlate'
+import { getValueFromState, stateKeys } from './reducers/stateManager';
+import SplashContainer from './containers/SplashContainer';
 
 class App extends Component {
   render() {
+    if (!this.props.started)
+      return <SplashContainer />
+
     return (
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
-        <Name />
+        <NamePlate />
       </div>
     );
   }
 }
 
-export default App;
+const mapStateToProps = state => ({
+  started: getValueFromState(state, stateKeys.STARTED)
+})
+
+export default connect(mapStateToProps)(App);

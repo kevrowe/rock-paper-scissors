@@ -1,4 +1,4 @@
-export const setUsername = 'SET_USERNAME'
+export const startGame = 'START_GAME'
 export const setCpuPick = 'SET_CPU_PICK'
 export const setUserPick = 'SET_USER_PICK'
 export const play = 'PLAY'

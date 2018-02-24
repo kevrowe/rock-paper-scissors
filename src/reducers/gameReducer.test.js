@@ -1,7 +1,7 @@
 import { fromJS } from 'immutable'
 import reducer from './gameReducer'
 import { values as pick } from '../game/data'
-import { setUsername, setCpuPick, setUserPick, play, newRound } from '../actions'
+import { setCpuPick, setUserPick, play, newRound, startGame } from '../actions'
 import { setValueInState, getValueFromState, stateKeys } from '../reducers/stateManager'
 
 describe('Game reducer', () => {
@@ -11,10 +11,9 @@ describe('Game reducer', () => {
     state = reducer(undefined, {})
   })
 
-  it('sets the username to Geoffrey', () => {
-    const username = 'Geoffrey'
-    const newState = reducer(state, setUsername(username))
-    expect(getValueFromState(newState, stateKeys.USER_NAME)).toBe(username)
+  it('starts game', () => {
+    const newState = reducer(state, startGame())
+    expect(getValueFromState(newState, stateKeys.STARTED)).toBe(true)
   })
 
   it('sets user pick to Rock', () => {
@@ -33,7 +32,6 @@ describe('Game reducer', () => {
   })
 
   it('updates user and cpu history with Rock and Paper respectively on game end', () => {
-    state = setValueInState(state, stateKeys.USER_NAME, 'Geoffrey')
     state = setValueInState(state, stateKeys.USER_PICK, pick.ROCK)
     state = setValueInState(state, stateKeys.CPU_PICK, pick.PAPER)
 
@@ -45,7 +43,6 @@ describe('Game reducer', () => {
   })
 
   it('clears user and cpu picks on game end', () => {
-    state = setValueInState(state, stateKeys.USER_NAME, 'Geoffrey')
     state = setValueInState(state, stateKeys.USER_PICK, pick.ROCK)
     state = setValueInState(state, stateKeys.CPU_PICK, pick.PAPER)
 

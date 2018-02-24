@@ -17,6 +17,7 @@ export const parseKey = (state, key) => {
 }
 
 export const stateKeys = {
+  STARTED:       'game.started',
   USER_NAME:     'game.user.name',
   USER_SCORE:    'game.user.score',
   USER_PICK:     'game.user.pick',

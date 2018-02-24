@@ -1,8 +1,7 @@
 import * as actionTypes from './types'
 
-export const setUsername = username => ({
-  type: actionTypes.setUsername,
-  username
+export const startGame = () => ({
+  type: actionTypes.startGame
 })
 
 export const setCpuPick = pick => ({

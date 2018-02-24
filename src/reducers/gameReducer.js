@@ -4,6 +4,7 @@ import * as actionTypes from '../actions/types'
 import { stateKeys, setValueInState, getValueFromState } from './stateManager'
 
 const initialState = fromJS({
+  started: false,
   user: {
     history: [],
   },
@@ -31,8 +32,8 @@ const newRound = (state, action ) => {
 
 export default (state = initialState, action) => {
   switch (action.type) {
-    case actionTypes.setUsername:
-      return setValueInState(state, stateKeys.USER_NAME, action.username)
+    case actionTypes.startGame:
+      return setValueInState(state, stateKeys.STARTED, true)
     case actionTypes.setCpuPick:
       return setValueInState(state, stateKeys.CPU_PICK, action.pick)
     case actionTypes.setUserPick:
