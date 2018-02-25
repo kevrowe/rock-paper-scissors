@@ -2,9 +2,10 @@ import { fromJS } from 'immutable'
 
 import * as actionTypes from '../actions/types'
 import { stateKeys, setValueInState, getValueFromState } from './stateManager'
+import { status } from '../game/data';
 
 const initialState = fromJS({
-  started: false,
+  status: status.INIT,
   user: {
     history: [],
   },
@@ -31,17 +32,21 @@ const newRound = (state, action ) => {
 }
 
 export default (state = initialState, action) => {
+  let newState = state
+
   switch (action.type) {
     case actionTypes.startGame:
-      return setValueInState(state, stateKeys.STARTED, true)
+      return setValueInState(newState, stateKeys.STATUS, status.SELECT)
     case actionTypes.setCpuPick:
-      return setValueInState(state, stateKeys.CPU_PICK, action.pick)
+      return setValueInState(newState, stateKeys.CPU_PICK, action.pick.value)
     case actionTypes.setUserPick:
-      return setValueInState(state, stateKeys.USER_PICK, action.pick)
-    case actionTypes.play:
-      return setValueInState(state, stateKeys.PLAY, true)
+      newState = setValueInState(newState, stateKeys.STATUS, status.COUNTDOWN)
+      return setValueInState(newState, stateKeys.USER_PICK, action.pick.value)
+    case actionTypes.show:
+      newState = setValueInState(newState, stateKeys.STATUS, status.SHOW)
+      return setValueInState(newState, stateKeys.PLAY, true)
     case actionTypes.newRound:
-      return newRound(state, action)
+      return newRound(newState, action)
     default:
       return state
   }

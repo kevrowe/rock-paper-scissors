@@ -1,0 +1,47 @@
+.pick-list {
+    display: flex;
+    list-style: none;
+    padding: 0;
+    justify-content: center;
+    grid-template: 'user-pick';
+}
+
+.pick-list__item {
+    width: 100px;
+    height: 100px;
+    position: relative;
+    z-index: 2;
+    margin: 0 0 0 10px;
+    cursor: pointer;
+}
+
+.pick-list__item:first-child {
+    margin: 0;
+    transform: rotateZ(-20deg)
+}
+
+.pick-list__item:nth-child(2n + 1) {
+    margin-top: 25px;
+}
+
+.pick-list__item:nth-child(2n + 3) {
+    transform: rotateZ(20deg)
+}
+
+.pick-list__item:hover:before {
+    background: #55ff55;
+    border-radius: 50%;
+    content: " ";
+    display: block;
+    width: 120%;
+    height: 120%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-45%, -50%);
+    z-index: -1;
+}
+
+.pick-list__item--rock:hover:before {
+    transform: translate(-48%, -50%);
+}

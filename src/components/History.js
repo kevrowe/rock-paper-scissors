@@ -8,11 +8,6 @@ class History extends Component {
         items: PropTypes.array,
         label: PropTypes.string,
     }
-    constructor(props) {
-        super(props);
-
-        this.state = {}
-    }
     renderItem(item) {
         const Icon = getIcon(item.value)
 

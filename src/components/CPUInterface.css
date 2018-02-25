@@ -1,0 +1,15 @@
+.cpu-interface {
+
+}
+
+.cpu-hidden {
+    grid-template: 'cpu-pick';
+    width: 100px;
+    height: 100px;
+    transform: rotate(180deg);
+    margin-top: 20px;
+}
+
+.cpu-hidden svg {
+    fill: #999;
+}

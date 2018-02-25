@@ -6,11 +6,11 @@ import { values, results } from './data'
  * @param {Any} b Player selection
  */
 export const play = (a, b) => {
-  if (a.value === b.value) {
+  if (a.get('pick') === b.get('pick')) {
     return false
   }
 
-  const aWins = results[a.value][b.value] === 1
+  const aWins = results[a.get('pick')][b.get('pick')] === 1
 
   return aWins ? a : b
 }

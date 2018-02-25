@@ -3,3 +3,10 @@ body {
   padding: 0;
   font-family: sans-serif;
 }
+
+.grid {
+  grid-template-areas:
+    'cpu-name   cpu-pick      cpu-history'
+    'score      notification  .'
+    'user-name  user-pick     user-history';
+}

@@ -14,8 +14,8 @@ export const setUserPick = pick => ({
   pick
 })
 
-export const play = () => ({
-  type: actionTypes.play
+export const show = () => ({
+  type: actionTypes.show
 })
 
 export const newRound = () => ({

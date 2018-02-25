@@ -1,7 +1,7 @@
 import { fromJS } from 'immutable'
 import reducer from './gameReducer'
-import { values as pick } from '../game/data'
-import { setCpuPick, setUserPick, play, newRound, startGame } from '../actions'
+import { picks, status } from '../game/data'
+import { setCpuPick, setUserPick, show, newRound, startGame } from '../actions'
 import { setValueInState, getValueFromState, stateKeys } from '../reducers/stateManager'
 
 describe('Game reducer', () => {
@@ -11,40 +11,45 @@ describe('Game reducer', () => {
     state = reducer(undefined, {})
   })
 
-  it('starts game', () => {
+  it('startGame switches game status to SELECT', () => {
     const newState = reducer(state, startGame())
-    expect(getValueFromState(newState, stateKeys.STARTED)).toBe(true)
+    expect(getValueFromState(newState, stateKeys.STATUS)).toBe(status.SELECT)
   })
 
   it('sets user pick to Rock', () => {
-    const newState = reducer(state, setUserPick(pick.ROCK))
-    expect(getValueFromState(newState, stateKeys.USER_PICK)).toBe(pick.ROCK)
+    const newState = reducer(state, setUserPick(picks[0]))
+    expect(getValueFromState(newState, stateKeys.USER_PICK)).toBe(picks[0].value)
+  })
+
+  it('setting user pick sets game status to COUNTDOWN', () => {
+    const newState = reducer(state, setUserPick(picks[0]))
+    expect(getValueFromState(newState, stateKeys.STATUS)).toBe(status.COUNTDOWN)
   })
 
   it('sets cpu pick to Paper', () => {
-    const newState = reducer(state, setCpuPick(pick.PAPER))
-    expect(getValueFromState(newState, stateKeys.CPU_PICK)).toBe(pick.PAPER)
+    const newState = reducer(state, setCpuPick(picks[1]))
+    expect(getValueFromState(newState, stateKeys.CPU_PICK)).toBe(picks[1].value)
   })
 
   it('sets play to true', () => {
-    const newState = reducer(state, play())
+    const newState = reducer(state, show())
     expect(getValueFromState(newState, stateKeys.PLAY)).toBe(true)
   })
 
   it('updates user and cpu history with Rock and Paper respectively on game end', () => {
-    state = setValueInState(state, stateKeys.USER_PICK, pick.ROCK)
-    state = setValueInState(state, stateKeys.CPU_PICK, pick.PAPER)
+    state = setValueInState(state, stateKeys.USER_PICK, picks[0])
+    state = setValueInState(state, stateKeys.CPU_PICK, picks[1])
 
     const newState = reducer(state, newRound())
     expect(getValueFromState(newState, stateKeys.USER_HISTORY).size).toBe(1)
-    expect(getValueFromState(newState, stateKeys.USER_HISTORY).get(0)).toBe(pick.ROCK)
+    expect(getValueFromState(newState, stateKeys.USER_HISTORY).get(0)).toBe(picks[0])
     expect(getValueFromState(newState, stateKeys.CPU_HISTORY).size).toBe(1)
-    expect(getValueFromState(newState, stateKeys.CPU_HISTORY).get(0)).toBe(pick.PAPER)
+    expect(getValueFromState(newState, stateKeys.CPU_HISTORY).get(0)).toBe(picks[1])
   })
 
   it('clears user and cpu picks on game end', () => {
-    state = setValueInState(state, stateKeys.USER_PICK, pick.ROCK)
-    state = setValueInState(state, stateKeys.CPU_PICK, pick.PAPER)
+    state = setValueInState(state, stateKeys.USER_PICK, picks[0])
+    state = setValueInState(state, stateKeys.CPU_PICK, picks[1])
 
     const newState = reducer(state, newRound())
 
