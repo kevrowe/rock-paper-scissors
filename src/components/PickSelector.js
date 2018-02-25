@@ -24,6 +24,7 @@ class PlayerUI extends Component {
                 tabIndex={0}
                 className={`pick-list__item ${dynamicClass}`}
                 onKeyDown={e => { if (e.keyCode === 13) this.props.onSelect(option) }}
+                onTouchStart={_ => { this.props.onSelect(option) }}
                 onClick={_ => { this.props.onSelect(option) }}
             >
                 <Icon />

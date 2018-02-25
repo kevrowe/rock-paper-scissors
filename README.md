@@ -2,7 +2,7 @@
 
 A rock, paper, scissors implementation with React and Redux.
 
-Available at https://build-xpypqlvpak.now.sh
+Available at https://build-wfwvsfbkff.now.sh
 
 ## Getting Started
 1. Clone
