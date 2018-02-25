@@ -1,0 +1,10 @@
+.score {
+  grid-area: user-score;
+  text-align: right;
+  font-size: 30px;
+}
+
+.score--cpu {
+  grid-area: cpu-score;
+  align-self: end;
+}

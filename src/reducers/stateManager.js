@@ -22,10 +22,8 @@ export const stateKeys = {
   USER_NAME:     'game.user.name',
   USER_SCORE:    'game.user.score',
   USER_PICK:     'game.user.pick',
-  USER_HISTORY:  'game.user.history',
   CPU:           'game.cpu',
   CPU_SCORE:     'game.cpu.score',
   CPU_PICK:      'game.cpu.pick',
-  CPU_HISTORY:   'game.cpu.history',
   PLAY:          'game.play',
 }

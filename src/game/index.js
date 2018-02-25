@@ -1,4 +1,4 @@
-import { values, results } from './data'
+import { results } from './data'
 
 /**
  * Calculate the result of a game

@@ -1,21 +1,39 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 
-class PickDisplay extends Component {
-    static propTypes = {
-    }
-    constructor(props) {
-        super(props)
+import Rock from './icons/rock'
 
-        this.state = {}
+import './PickDisplay.css'
+import { getIcon } from '../game/iconManager';
+
+class PickDisplay extends Component {
+  static propTypes = {
+    pick: PropTypes.number,
+    cpu: PropTypes.bool,
+    animate: PropTypes.bool,
+  }
+  render() {
+    const {pick, cpu, animate} = this.props
+    let Icon = Rock
+    let dynamicClass = ''
+
+    if (typeof pick === 'number') {
+      Icon = getIcon(pick)
+      dynamicClass += 'pick-display--show'
     }
-    render() {
-        return (
-            <div>
-              Show my hand
-            </div>
-        )
+
+    if (animate) {
+      dynamicClass += ' pick-display--pulse'
     }
+
+    dynamicClass += cpu ? ' pick-display--cpu' : ''
+
+    return (
+      <div className={`pick-display ${dynamicClass}`}>
+        <Icon />
+      </div>
+    )
+  }
 }
 
 export default PickDisplay

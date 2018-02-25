@@ -2,11 +2,38 @@ body {
   margin: 0;
   padding: 0;
   font-family: sans-serif;
+  background: linear-gradient(to bottom, #da5555 0%, #da5555 50%, #5555da 50%);
 }
 
 .grid {
+  display: grid;
+  height: 100vh;
+  padding: 10px;
+  box-sizing: border-box;
+  grid-template-rows: 5% 30% 30% 30% 5%;
+  grid-template-columns: 10% 80% 10%;
   grid-template-areas:
-    'cpu-name   cpu-pick      cpu-history'
+    '.          cpu-name      .'
+    '.          cpu-pick      cpu-score'
     'score      notification  .'
-    'user-name  user-pick     user-history';
+    '.          user-pick     user-score'
+    '.          user-name     .';
+}
+
+.grid * {
+  box-sizing: border-box;
+}
+
+@media screen and (min-width: 600px) {
+  .grid {
+    padding: 50px;
+    grid-template-rows: 5% 30% 20% 30 5%;
+    grid-template-columns: 10% 80% 10%;
+    grid-template-areas:
+      '.          cpu-name      .'
+      '.          cpu-pick      cpu-score'
+      'score      notification  .'
+      '.          user-pick     user-score'
+      '.          user-name     .';
+  }
 }

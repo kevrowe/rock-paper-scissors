@@ -3,7 +3,9 @@
     list-style: none;
     padding: 0;
     justify-content: center;
-    grid-template: 'user-pick';
+    align-self: end;
+    grid-area: user-pick;
+    fill: white;
 }
 
 .pick-list__item {
@@ -29,7 +31,7 @@
 }
 
 .pick-list__item:hover:before {
-    background: #55ff55;
+    background: rgb(10, 153, 40);
     border-radius: 50%;
     content: " ";
     display: block;

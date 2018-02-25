@@ -1,25 +1,59 @@
 import React, { Component } from 'react'
-import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { getValueFromState, stateKeys } from '../reducers/stateManager';
 import { status as gameStatus } from '../game/data'
 import { play } from '../game/index'
 import Countdown from '../components/Countdown'
-import { show } from '../actions';
+import { show, newRound } from '../actions';
+import Button from '../components/shared/Button'
+
+import './NotificationContainer.css'
 
 class NotificationContainer extends Component {
-  static propTypes = {
+  renderEndRound(winner, user) {
+    let text
+
+    if (!winner) {
+      text = "DRAW"
+    } else {
+      text = winner === user ? "Nailed it!" : "Unlucky"
+    }
+
+    if (!text)
+      return null
+
+    return (
+      <div key="content" className="notification__content">
+        {text}
+      </div>
+    )
   }
   render() {
     const { status, user, cpu, onShow } = this.props
-    let content
+    let content = []
 
-    if (status === gameStatus.COUNTDOWN) {
-      content = <Countdown onComplete={onShow} />
-    } else if (status === gameStatus.SHOW) {
-      const winner = play(user, cpu)
+    switch(status) {
+      case gameStatus.SELECT:
+        content = <div className="notification__content">Select your weapon!</div>
+        break
+      case gameStatus.COUNTDOWN:
+        content = <Countdown onComplete={onShow} />
+        break
+      case gameStatus.SHOW:
+        const winner = play(user, cpu)
 
-      content = winner === user ? "Nailed it." : "Bad luck!"
+        content.push(this.renderEndRound(winner, user))
+        content.push(<Button
+            key="newround"
+            className="new-round"
+            onClick={this.props.onNewRound}
+          >
+            Again!
+          </Button>
+        )
+        break
+      default:
+        break
     }
 
     return (
@@ -39,6 +73,9 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => ({
   onShow: () => {
     dispatch(show())
+  },
+  onNewRound: () => {
+    dispatch(newRound())
   }
 })
 

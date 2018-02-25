@@ -1,0 +1,14 @@
+.rps-button {
+  margin: 5px 0;
+  padding: 5px 10px;
+  font-size: 1.3rem;
+  cursor: pointer;
+  border: 0 none;
+  border-bottom: 2px solid rgb(10, 103, 10);
+  background-color: rgb(10, 153, 40);
+  color: white;
+}
+
+.rps-button:hover {
+  background-color: rgb(10, 153, 40);
+}

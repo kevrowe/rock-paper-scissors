@@ -1,0 +1,17 @@
+.countdown {
+  font-size: 20px;
+  margin: 0 auto;
+  text-align: center;
+  padding: 10px 0;
+  color: white;
+  animation: 1s countdown infinite;
+}
+
+@keyframes countdown {
+  from {
+    transform: scale(3);
+  }
+  to {
+    transform: scale(.5);
+  }
+}

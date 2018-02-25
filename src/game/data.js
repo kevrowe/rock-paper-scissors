@@ -1,5 +1,4 @@
 export const status = {
-  INIT: 0,
   SELECT: 1,
   COUNTDOWN: 2,
   SHOW: 3

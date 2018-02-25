@@ -32,19 +32,10 @@ describe('Game reducer', () => {
   })
 
   it('sets play to true', () => {
+    state = setValueInState(state, stateKeys.USER_PICK, picks[0].value)
+
     const newState = reducer(state, show())
     expect(getValueFromState(newState, stateKeys.PLAY)).toBe(true)
-  })
-
-  it('updates user and cpu history with Rock and Paper respectively on game end', () => {
-    state = setValueInState(state, stateKeys.USER_PICK, picks[0])
-    state = setValueInState(state, stateKeys.CPU_PICK, picks[1])
-
-    const newState = reducer(state, newRound())
-    expect(getValueFromState(newState, stateKeys.USER_HISTORY).size).toBe(1)
-    expect(getValueFromState(newState, stateKeys.USER_HISTORY).get(0)).toBe(picks[0])
-    expect(getValueFromState(newState, stateKeys.CPU_HISTORY).size).toBe(1)
-    expect(getValueFromState(newState, stateKeys.CPU_HISTORY).get(0)).toBe(picks[1])
   })
 
   it('clears user and cpu picks on game end', () => {

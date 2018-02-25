@@ -1,0 +1,16 @@
+.notification {
+  color: white;
+  grid-area: notification;
+  align-self: center;
+}
+
+.notification__content {
+  font-size: 34px;
+  text-align: center;
+  margin: 10px 0;
+}
+
+.new-round {
+  display: block;
+  margin: 0 auto;
+}

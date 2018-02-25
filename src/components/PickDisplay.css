@@ -1,0 +1,57 @@
+.pick-display {
+    grid-area: user-pick;
+    width: 100px;
+    height: 100px;
+    align-self: end;
+    margin: 0 auto;
+}
+
+.pick-display--cpu {
+    align-self: start;
+    margin-top: 20px;
+    transform: rotate(180deg);
+    grid-area: cpu-pick;
+}
+
+.pick-display--pulse {
+    margin-bottom: 20px;
+    animation: .5s pulse infinite alternate;
+}
+
+.pick-display--show {
+    align-self: start;
+}
+
+.pick-display--cpu.pick-display--show {
+    align-self: end;
+}
+
+.pick-display--cpu.pick-display--pulse {
+    animation: .5s pulse-cpu infinite alternate;
+}
+
+.pick-display svg {
+    fill: #000;
+}
+
+.pick-display--show svg {
+    fill: #fff;
+}
+
+@keyframes pulse-cpu {
+    from {
+        transform: rotate(180deg) scale(1);
+    }
+    to {
+        transform: rotate(180deg) scale(1.1);
+    }
+}
+
+@keyframes pulse {
+    from {
+        transform: scale(1);
+    }
+    to {
+        transform: scale(1.2);
+    }
+}

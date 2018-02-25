@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 
+import './Countdown.css'
+
 class Countdown extends Component {
   static propTypes = {
     onComplete: PropTypes.func,
@@ -25,7 +27,7 @@ class Countdown extends Component {
 
       return (
         <div className="countdown">
-        {this.state.count}
+          {this.state.count}
         </div>
       )
     }
