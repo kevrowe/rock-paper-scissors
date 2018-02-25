@@ -10,6 +10,7 @@ body {
   height: 100vh;
   padding: 10px;
   box-sizing: border-box;
+  overflow: hidden;
   grid-template-rows: 5% 30% 30% 30% 5%;
   grid-template-columns: 10% 80% 10%;
   grid-template-areas:
